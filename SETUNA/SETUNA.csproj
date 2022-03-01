@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>SETUNA</RootNamespace>
     <AssemblyName>SETUNA</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>SETUNA.ico</ApplicationIcon>
@@ -127,6 +127,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Main\StyleItems\CEditStyleItem.cs" />
+    <Compile Include="Main\StyleItems\EditStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Plugins\ResourceExtractor.cs" />
     <Compile Include="Plugins\WebPWrapper.cs" />
     <Compile Include="ClickCapture.cs">

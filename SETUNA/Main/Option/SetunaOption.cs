@@ -75,6 +75,22 @@ namespace SETUNA.Main.Option
             });
             cstyle.AddKeyItem((Keys)196675);
             setunaOption.Styles.Add(cstyle);
+
+            //编辑
+            cstyle = new CStyle
+            {
+                StyleID = num++,
+                StyleName = "用画图工具编辑"
+            };
+            cstyle.AddStyle(new CEditStyleItem
+            {
+                
+            });
+            //cstyle.AddStyle(new CEditStyleItem());
+            cstyle.AddKeyItem((Keys)131161);
+            var styleID1 = cstyle.StyleID;
+            setunaOption.Styles.Add(cstyle);
+
             cstyle = new CStyle
             {
                 StyleID = num++,
@@ -551,6 +567,10 @@ namespace SETUNA.Main.Option
             setunaOption.Scrap.SubMenuStyles.Add(new CDustEraseStyle().StyleID);
             setunaOption.Scrap.SubMenuStyles.Add(new COptionStyle().StyleID);
             setunaOption.Scrap.SubMenuStyles.Add(new CShowVersionStyle().StyleID);
+            setunaOption.Scrap.SubMenuStyles.Add(new CSeparatorStyle().StyleID);
+            setunaOption.Scrap.SubMenuStyles.Add(new CSeparatorStyle().StyleID);
+            //使用画图工具编辑
+            setunaOption.Scrap.SubMenuStyles.Add(styleID1);
             setunaOption.Scrap.SubMenuStyles.Add(new CSeparatorStyle().StyleID);
             setunaOption.Scrap.SubMenuStyles.Add(styleID);
             setunaOption.Scrap.SubMenuStyles.Add(styleID2);

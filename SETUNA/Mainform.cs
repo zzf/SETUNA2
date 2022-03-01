@@ -413,7 +413,8 @@ namespace SETUNA
             }
             catch
             {
-                MessageBox.Show("无法保存配置文件。", "SETUNA2", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                //TODO by zzf 先忽略
+                //MessageBox.Show("无法保存配置文件。", "SETUNA2", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
         }
 
@@ -439,7 +440,8 @@ namespace SETUNA
             catch
             {
                 optSetuna = SetunaOption.GetDefaultOption();
-                MessageBox.Show("无法读取配置文件。\n使用默认设置。", "SETUNA2", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                // TODO by zzf 暂时屏蔽
+                //MessageBox.Show("无法读取配置文件。\n使用默认设置。", "SETUNA2", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
             finally
             {
