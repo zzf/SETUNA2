@@ -32,5 +32,10 @@ namespace SETUNA.Main
             SplashTimer.Enabled = false;
             base.Close();
         }
+
+        private void lblVer_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

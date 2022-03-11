@@ -30,39 +30,35 @@ namespace SETUNA.Main.StyleItems
             }
             */
 
-            //if (false == isDoOpenEditor)
-            //{
-                //isDoOpenEditor = true;
-                //lastEditrTime = DateTime.Now;
-
-                Debug.WriteLine("Save ------------");
-                var text = Application.StartupPath;
-                text = System.IO.Path.GetFullPath(System.IO.Path.Combine(text, "editr_files"));
-                if (!System.IO.Directory.Exists(text))
+            Debug.WriteLine("Save ------------");
+            var text = Application.StartupPath;
+            text = System.IO.Path.GetFullPath(System.IO.Path.Combine(text, "editr_files"));
+            if (!System.IO.Directory.Exists(text))
+            {
+                System.IO.Directory.CreateDirectory(text);
+            }
+            else
+            {
+                string[] files = System.IO.Directory.GetFiles(text);
+                foreach (var file in files)
                 {
-                    System.IO.Directory.CreateDirectory(text);
+                    System.IO.File.Delete(file);
                 }
-                else
-                {
-                    string[] files = System.IO.Directory.GetFiles(text);
-                    foreach(var file in files)
-                    {
-                        System.IO.File.Delete(file);
-                    }
-                }
+            }
 
-                string tmp_str = DateTime.Now.ToLongTimeString().Replace(":", "-");
-                string image_path = System.IO.Path.Combine(text, tmp_str + ".jpg");
-                //MessageBox.Show("CEditStyleItem 1 image_path = " + image_path, "SETUNA3", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                var image = (Image)scrap.Image.Clone();
-                image.Save(image_path);
+            string tmp_str = DateTime.Now.ToLongTimeString().Replace(":", "-");
+            string image_path = System.IO.Path.Combine(text, tmp_str + ".jpg");
+            //MessageBox.Show("CEditStyleItem 1 image_path = " + image_path, "SETUNA3", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            var image = (Image)scrap.Image.Clone();
+            image.Save(image_path);
 
-                var pinf = new ProcessStartInfo(@"C:\WINDOWS\system32\mspaint.exe", image_path);
-                Process.Start(pinf);
-                //下面的代码会执行两次
-                //var pro = Process.Start(pinf);
-                //pro.Start();
-            //}
+            var pinf = new ProcessStartInfo(@"C:\WINDOWS\system32\mspaint.exe", image_path);
+            Process.Start(pinf);
+            //下面的代码会执行两次
+            //var pro = Process.Start(pinf);
+            //pro.Start();
+            //打开之后关闭原截图
+            scrap.Close();
         }
 
         public override string GetName()
