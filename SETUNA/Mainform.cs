@@ -24,6 +24,11 @@ namespace SETUNA
         {
             Instance = this;
 
+            k_hook = new KeyboardHook();
+            StartHookListen();
+
+            KeyPreview = true;
+
             _isstart = false;
             _iscapture = false;
             _isoption = false;
@@ -612,6 +617,70 @@ namespace SETUNA
             {
                 optSetuna.UnregistHotKey(Handle, item);
             }
+            Dispose();
+            Close();
+
+            //去掉钩子
+            StopHookListen();
+        }
+
+        //托盘图标，鼠标左键显示回来原窗体，右键显示退出
+        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (WindowState == FormWindowState.Minimized)
+                {
+                    Show();
+                    WindowState = FormWindowState.Normal;
+                    ShowInTaskbar = true;
+                }
+            }
+            else
+            {
+                TuoPanContextStyleMenuStrip.Show(Cursor.Position);
+            }
+        }
+
+        private void menuItemOpenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QPan_OpenFromTuoPan();
+        }
+
+        private void menuItemCloseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (HotKeyID item in Enum.GetValues(typeof(HotKeyID)))
+            {
+                optSetuna.UnregistHotKey(Handle, item);
+            }
+            Dispose();
+            Close();
+        }
+
+        //从托盘返回，函数
+        private void QPan_OpenFromTuoPan()
+        {
+            Visible = true;
+            Show();
+            ShowInTaskbar = true;
+            WindowState = FormWindowState.Normal;
+            //TuoPanContextStyleMenuStrip.Visible = true;
+        }
+
+        // Hide to system tray
+        private void Mainform_Resize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                Hide();
+                ShowInTaskbar = false;
+            }
+        }
+
+        //隐藏到托盘
+        private void HideToTuoPan()
+        {
+            WindowState = FormWindowState.Minimized;
         }
 
         // Token: 0x06000211 RID: 529 RVA: 0x0000B324 File Offset: 0x00009524
@@ -945,6 +1014,56 @@ namespace SETUNA
             }
         }
 
+        private void hook_KeyDown(object sender, KeyEventArgs e)
+        {
+            Console.WriteLine("KeyDown = " + e.KeyCode.ToString());
+            if (WindowState == FormWindowState.Minimized)
+            {
+                Console.WriteLine("Start Hook");
+                //  这里写具体实现
+                if (e.KeyCode.Equals(Keys.LControlKey))
+                {
+                    _lastLControlKeyMillis = DateTime.Now.Ticks / 10000;
+                    Console.WriteLine("curMillis = " + _lastLControlKeyMillis);
+                }
+                else if (e.KeyCode.Equals(Keys.D1))
+                {
+                    if (_lastLControlKeyMillis > 0)
+                    {
+                        var curMillis = DateTime.Now.Ticks / 10000;
+                        if (curMillis - _lastLControlKeyMillis < 1000)
+                        {
+                            Console.WriteLine("StartCapture");
+                            StartCapture();
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 开始监听
+        /// </summary>
+        public void StartHookListen()
+        {
+            myKeyEventHandeler = new KeyEventHandler(hook_KeyDown);
+            k_hook.KeyDownEvent += myKeyEventHandeler;//钩住键按下
+            k_hook.Start();//安装键盘钩子
+        }
+
+        /// <summary>
+        /// 结束监听
+        /// </summary>
+        public void StopHookListen()
+        {
+            if (myKeyEventHandeler != null)
+            {
+                k_hook.KeyDownEvent -= myKeyEventHandeler;//取消按键事件
+                myKeyEventHandeler = null;
+                k_hook.Stop();//关闭键盘钩子
+            }
+        }
+
 
 
         // Token: 0x040000E1 RID: 225
@@ -989,5 +1108,10 @@ namespace SETUNA
 
         private List<Form> forms = new List<Form>();
         private bool allScrapActive = true;
+
+        private KeyboardHook k_hook = null;
+        private KeyEventHandler myKeyEventHandeler = null;
+        //毫秒计
+        private long _lastLControlKeyMillis = 0;
     }
 }

@@ -28,7 +28,12 @@
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.delayInitTimer = new System.Windows.Forms.Timer(this.components);
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.TuoPanContextStyleMenuStrip = new SETUNA.Main.ContextStyleMenuStrip(this.components);
+            this.menuItemOpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemCloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.subMenu.SuspendLayout();
+            this.TuoPanContextStyleMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -75,7 +80,7 @@
             // 
             this.setunaIcon.ContextMenuStrip = this.setunaIconMenu;
             this.setunaIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("setunaIcon.Icon")));
-            this.setunaIcon.Text = "SETUNA2";
+            this.setunaIcon.Text = "SETUNA3";
             this.setunaIcon.DoubleClick += new System.EventHandler(this.setunaIcon_MouseDoubleClick);
             this.setunaIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.setunaIcon_MouseClick);
             // 
@@ -94,12 +99,12 @@
             this.testToolStripMenuItem});
             this.subMenu.Name = "subMenu";
             this.subMenu.Scrap = null;
-            this.subMenu.Size = new System.Drawing.Size(148, 50);
+            this.subMenu.Size = new System.Drawing.Size(98, 26);
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(147, 46);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(97, 22);
             this.testToolStripMenuItem.Text = "test";
             // 
             // toolTip1
@@ -113,6 +118,37 @@
             // 
             this.delayInitTimer.Interval = 1000;
             this.delayInitTimer.Tick += new System.EventHandler(this.delayInitTimer_Tick);
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.ContextMenuStrip = this.TuoPanContextStyleMenuStrip;
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseClick);
+            // 
+            // TuoPanContextStyleMenuStrip
+            // 
+            this.TuoPanContextStyleMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemOpenToolStripMenuItem,
+            this.menuItemCloseToolStripMenuItem});
+            this.TuoPanContextStyleMenuStrip.Name = "TuoPanContextStyleMenuStrip";
+            this.TuoPanContextStyleMenuStrip.Scrap = null;
+            this.TuoPanContextStyleMenuStrip.Size = new System.Drawing.Size(109, 48);
+            // 
+            // menuItemOpenToolStripMenuItem
+            // 
+            this.menuItemOpenToolStripMenuItem.Name = "menuItemOpenToolStripMenuItem";
+            this.menuItemOpenToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.menuItemOpenToolStripMenuItem.Text = "Open";
+            this.menuItemOpenToolStripMenuItem.Click += new System.EventHandler(this.menuItemOpenToolStripMenuItem_Click);
+            // 
+            // menuItemCloseToolStripMenuItem
+            // 
+            this.menuItemCloseToolStripMenuItem.Name = "menuItemCloseToolStripMenuItem";
+            this.menuItemCloseToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.menuItemCloseToolStripMenuItem.Text = "Quit";
+            this.menuItemCloseToolStripMenuItem.Click += new System.EventHandler(this.menuItemCloseToolStripMenuItem_Click);
             // 
             // Mainform
             // 
@@ -131,7 +167,9 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Mainform_FormClosing);
             this.Load += new System.EventHandler(this.Mainform_Load);
             this.Shown += new System.EventHandler(this.Mainform_Shown);
+            this.Resize += new System.EventHandler(this.Mainform_Resize);
             this.subMenu.ResumeLayout(false);
+            this.TuoPanContextStyleMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
@@ -165,5 +203,9 @@
 
         private global::System.Windows.Forms.Timer windowTimer;
         private System.Windows.Forms.Timer delayInitTimer;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private Main.ContextStyleMenuStrip TuoPanContextStyleMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem menuItemOpenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuItemCloseToolStripMenuItem;
     }
 }
