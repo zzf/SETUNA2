@@ -46,8 +46,9 @@ namespace SETUNA.Main.StyleItems
                 }
             }
 
-            string tmp_str = DateTime.Now.ToLongTimeString().Replace(":", "-");
-            string image_path = System.IO.Path.Combine(text, tmp_str + ".jpg");
+            string tmp_str ="screenshot_" + DateTime.Now.ToLongTimeString().Replace(":", "_").Replace(" ", "_");
+            string image_path = System.IO.Path.Combine(text, tmp_str + ".png");
+            Debug.WriteLine(String.Format("image_path = {0}", image_path));
             //MessageBox.Show("CEditStyleItem 1 image_path = " + image_path, "SETUNA3", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             var image = (Image)scrap.Image.Clone();
             image.Save(image_path);
