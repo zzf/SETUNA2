@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SETUNATests", "SETUNATests\SETUNATests.csproj", "{A601CD5F-88CA-47C6-9D24-33E006864BD9}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetunaSetUp", "SetunaSetUp\SetunaSetUp.vdproj", "{6F1733AD-C528-4102-8D3F-2A2FD7D81230}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -32,6 +34,10 @@ Global
 		{A601CD5F-88CA-47C6-9D24-33E006864BD9}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{A601CD5F-88CA-47C6-9D24-33E006864BD9}.Release|x64.ActiveCfg = Release|Any CPU
 		{A601CD5F-88CA-47C6-9D24-33E006864BD9}.Release|x86.ActiveCfg = Release|Any CPU
+		{6F1733AD-C528-4102-8D3F-2A2FD7D81230}.Debug|x64.ActiveCfg = Debug
+		{6F1733AD-C528-4102-8D3F-2A2FD7D81230}.Debug|x86.ActiveCfg = Debug
+		{6F1733AD-C528-4102-8D3F-2A2FD7D81230}.Release|x64.ActiveCfg = Release
+		{6F1733AD-C528-4102-8D3F-2A2FD7D81230}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
