@@ -1019,6 +1019,7 @@ namespace SETUNA
             Console.WriteLine("KeyDown = " + e.KeyCode.ToString());
             if (WindowState == FormWindowState.Minimized)
             {
+                //最小化到托盘之后，也可以用快捷键截屏
                 Console.WriteLine("Start Hook");
                 //  这里写具体实现
                 if (e.KeyCode.Equals(Keys.LControlKey))

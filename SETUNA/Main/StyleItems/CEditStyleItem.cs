@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Diagnostics;
@@ -31,8 +32,9 @@ namespace SETUNA.Main.StyleItems
             */
 
             Debug.WriteLine("Save ------------");
-            var text = Application.StartupPath;
-            text = System.IO.Path.GetFullPath(System.IO.Path.Combine(text, "editr_files"));
+            //var text = Application.StartupPath;
+            //text = System.IO.Path.GetFullPath(System.IO.Path.Combine(text, "editr_files"));
+            var text = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), Application.ProductName, "capturedFiles");
             if (!System.IO.Directory.Exists(text))
             {
                 System.IO.Directory.CreateDirectory(text);
